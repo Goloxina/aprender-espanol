@@ -1,31 +1,22 @@
 // src/components/layout/PrivateLayout.jsx
-
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";  // ← Outlet SÍ se importa aquí
 import TopNav from "./TopNav";
-
-/*
-  Este layout envuelve TODAS las páginas privadas.
-
-  ¿Por qué existe?
-  - Para no repetir menú en cada página
-  - Para centralizar cosas comunes (menú, footer, etc.)
-*/
 
 export default function PrivateLayout() {
   return (
-    <div>
-      {/* Menú superior visible solo para usuarios logueados */}
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <TopNav />
 
-      {/* 
-        Outlet representa la página concreta:
-        - Dashboard
-        - Perfil
-        - Niveles
-        etc.
-      */}
-      <main>
-        <Outlet />
+      <main style={{
+        flex: 1,
+        padding: "2rem 1.5rem",
+        maxWidth: "1200px",
+        margin: "0 auto",
+        width: "100%",
+        background: "#f8f9fa",
+        minHeight: "calc(100vh - 70px)",  // ajusta 70px si tu TopNav es más alto
+      }}>
+        <Outlet />  {/* Aquí se renderizan Dashboard, Glosario, etc. */}
       </main>
     </div>
   );
